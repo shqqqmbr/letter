@@ -1,0 +1,157 @@
+<!DOCTYPE html>
+<html lang="ru">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Для тебя</title>
+    <style>
+        body {
+            background-color: #f5e9d9;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+            font-family: 'Times New Roman', serif;
+            cursor: default;
+            overflow: hidden;
+        }
+        
+        .container {
+            position: relative;
+            text-align: center;
+        }
+        
+        .envelope {
+            width: 400px;
+            height: 250px;
+            background-color: #f8f1e5;
+            border: 1px solid #d4c9bc;
+            position: relative;
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+            transition: all 0.5s ease;
+        }
+        
+        .envelope:before {
+            content: '';
+            position: absolute;
+            top: 0;
+            width: 0;
+            height: 0;
+            border-left: 200px solid transparent;
+            border-right: 200px solid transparent;
+            border-top: 125px solid #e8d9c5;
+            transform-origin: top;
+            transform: rotateX(0deg);
+            transition: all 0.8s ease;
+            z-index: 3;
+        }
+        
+        .envelope.open:before {
+            transform: rotateX(180deg);
+        }
+        
+        .wax-seal {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 60px;
+            height: 60px;
+            background-color: #a83232;
+            border-radius: 50%;
+            z-index: 4;
+            cursor: pointer;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.3);
+            transition: all 0.3s ease;
+        }
+        
+        .wax-seal:before {
+            content: 'Нажми на печать';
+            position: absolute;
+            top: -30px;
+            left: 50%;
+            transform: translateX(-50%);
+            background-color: rgba(0, 0, 0, 0.7);
+            color: white;
+            padding: 5px 10px;
+            border-radius: 5px;
+            font-size: 14px;
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            white-space: nowrap;
+        }
+        
+        .wax-seal:hover:before {
+            opacity: 1;
+        }
+        
+        .wax-seal:hover {
+            transform: translate(-50%, -50%) scale(1.1);
+        }
+        
+        .letter {
+            position: absolute;
+            top: 50%;
+            left: 50%;
+            transform: translate(-50%, -50%);
+            width: 380px;
+            height: 200px;
+            background-color: white;
+            padding: 20px;
+            box-sizing: border-box;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+            z-index: 2;
+            opacity: 0;
+            transition: all 0.8s ease 0.3s;
+            overflow: hidden;
+            font-size: 16px;
+            line-height: 1.6;
+        }
+        
+        .letter.open {
+            opacity: 1;
+            transform: translate(-50%, -150%);
+        }
+        
+        .signature {
+            font-style: italic;
+            text-align: right;
+            margin-top: 20px;
+        }
+        
+        .date {
+            text-align: right;
+            margin-bottom: 10px;
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <div class="envelope">
+            <div class="wax-seal" onclick="openEnvelope()"></div>
+            <div class="letter">
+                <div class="date">29.08.2025</div>
+                <p>Любимая моя Ксюня,</p>
+                <p>29.08.2025 - день, который я хочу провести с тобой и который обещает подарить тебе теплые и романтические воспоминания.</p>
+                <p>Жду твоего согласия в личных сообщениях.</p>
+                <div class="signature">С любовью,<br>твой Максик</div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        function openEnvelope() {
+            const envelope = document.querySelector('.envelope');
+            const letter = document.querySelector('.letter');
+            
+            envelope.classList.add('open');
+            letter.classList.add('open');
+            
+            // Убираем подсказку после открытия
+            const waxSeal = document.querySelector('.wax-seal');
+            waxSeal.style.display = 'none';
+        }
+    </script>
+</body>
+</html>
