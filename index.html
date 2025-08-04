@@ -11,11 +11,13 @@
             display: flex;
             justify-content: center;
             align-items: center;
-            height: 100vh;
+            min-height: 100vh;
             margin: 0;
             font-family: 'Playfair Display', serif;
-            overflow: hidden;
+            overflow-x: hidden;
             perspective: 1000px;
+            padding: 20px;
+            box-sizing: border-box;
         }
         
         .container {
@@ -23,6 +25,8 @@
             text-align: center;
             animation: float 6s ease-in-out infinite;
             z-index: 1;
+            width: 100%;
+            max-width: 500px;
         }
         
         @keyframes float {
@@ -31,8 +35,9 @@
         }
         
         .envelope {
-            width: 500px;
-            height: 320px;
+            width: 100%;
+            height: 0;
+            padding-bottom: 64%; /* Соотношение сторон 500:320 */
             background-color: #f8f1e5;
             background-image: 
                 linear-gradient(to bottom, rgba(0,0,0,0.03) 0%, transparent 100%),
@@ -57,9 +62,9 @@
             width: 0;
             height: 0;
             margin: 0 auto;
-            border-left: 250px solid transparent;
-            border-right: 250px solid transparent;
-            border-top: 160px solid #ede0d0;
+            border-left: 50% solid transparent;
+            border-right: 50% solid transparent;
+            border-top: 32% solid #ede0d0;
             background-image: url('https://www.transparenttextures.com/patterns/rice-paper-2.png');
             transform-origin: top center;
             transform: rotateX(0deg);
@@ -85,8 +90,11 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 75px;
-            height: 75px;
+            width: 15%;
+            max-width: 75px;
+            height: 0;
+            padding-bottom: 15%;
+            max-height: 75px;
             background: 
                 radial-gradient(circle at 30% 30%, #c13c3c, #8a2525),
                 url('https://www.transparenttextures.com/patterns/crissxcross.png');
@@ -139,13 +147,14 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 500px;
-            height: 420px; /* Увеличена высота до 420px */
+            width: 100%;
+            height: 0;
+            padding-bottom: 84%; /* Соотношение 500:420 */
             background-color: #fffcf8;
             background-image: 
                 url('https://www.transparenttextures.com/patterns/cream-paper.png'),
                 linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%);
-            padding: 40px 45px; /* Уменьшен верхний padding */
+            padding: 8% 9%;
             box-sizing: border-box;
             box-shadow: 
                 0 10px 25px rgba(0, 0, 0, 0.15),
@@ -155,7 +164,7 @@
             opacity: 0;
             transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             overflow: hidden;
-            font-size: 19px;
+            font-size: clamp(14px, 3vw, 19px);
             line-height: 1.9;
             border-radius: 3px;
             text-shadow: 0 1px 1px rgba(0,0,0,0.05);
@@ -193,30 +202,18 @@
             font-style: italic;
             text-align: right;
             margin-top: 30px;
-            padding-top: 30px; /* Отступ перед подписью */
-            font-size: 22px;
+            padding-top: 30px;
+            font-size: clamp(16px, 4vw, 22px);
             color: #8a2525;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
             position: relative;
         }
-
-        .signature:before {
-            content: '';
-            position: absolute;
-            top: 0;
-            left: 0;
-            right: 0;
-            height: 1px;
-            background: rgba(0,0,0,0.1);
-            box-shadow: 0 1px 0 rgba(255,255,255,0.5);
-        }
-
         
         .date {
             text-align: right;
-            margin-bottom: 25px; /* Увеличен отступ */
+            margin-bottom: 25px;
             color: #777;
-            font-size: 17px;
+            font-size: clamp(12px, 3vw, 17px);
         }
         
         .hearts {
@@ -284,7 +281,7 @@
         
         .envelope-shadow {
             position: absolute;
-            width: 520px;
+            width: 104%;
             height: 20px;
             background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 70%);
             bottom: -20px;
@@ -349,18 +346,78 @@
         
         .wax-imprint {
             position: absolute;
-            width: 60px;
-            height: 60px;
+            width: 12%;
+            height: 14%;
             background: radial-gradient(circle, rgba(193,60,60,0.2) 0%, rgba(138,37,37,0) 70%);
             border-radius: 50%;
             top: 10px;
             right: 10px;
             z-index: 1;
         }
+
+        /* Медиазапросы для адаптации */
+        @media (max-width: 768px) {
+            .container {
+                max-width: 90%;
+            }
+            
+            .wax-seal:before {
+                font-size: 12px;
+                padding: 6px 12px;
+                top: -35px;
+            }
+            
+            .letter {
+                padding: 6% 7%;
+            }
+            
+            .signature {
+                margin-top: 20px;
+                padding-top: 20px;
+            }
+        }
+
+        @media (max-width: 480px) {
+            .container {
+                max-width: 95%;
+            }
+            
+            .wax-seal:before {
+                content: '✉ Нажми ✉';
+                white-space: nowrap;
+                font-size: 11px;
+                padding: 5px 10px;
+                top: -30px;
+            }
+            
+            .letter {
+                font-size: 15px;
+                line-height: 1.7;
+            }
+            
+            .signature {
+                margin-top: 15px;
+                padding-top: 15px;
+            }
+        }
+
+        @media (min-width: 1200px) {
+            .container {
+                max-width: 600px;
+            }
+            
+            .envelope {
+                padding-bottom: 384px; /* Фиксированная высота для больших экранов */
+            }
+            
+            .letter {
+                padding-bottom: 504px; /* Фиксированная высота для больших экранов */
+            }
+        }
     </style>
 </head>
 <body>
-    <<div class="container">
+    <div class="container">
         <div class="envelope">
             <div class="wax-seal" id="wax-seal"></div>
             <div class="letter" id="letter">
@@ -375,9 +432,7 @@
                             <p>29.08.2025 - день, который я хочу провести с тобой и который обещает подарить тебе теплые и романтические воспоминания.</p>
                             <p>Жду твоего согласия в личных сообщениях.</p>
                         </div>
-                        <div class="signature">
-                            С любовью,<br>твой Максик
-                        </div>
+                        <div class="signature">С любовью,<br>твой Максик</div>
                     </div>
                 </div>
             </div>
