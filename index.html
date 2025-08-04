@@ -140,12 +140,12 @@
             left: 50%;
             transform: translate(-50%, -50%);
             width: 500px;
-            height: 400px; /* Общая высота остается прежней */
+            height: 420px; /* Увеличена высота до 420px */
             background-color: #fffcf8;
             background-image: 
                 url('https://www.transparenttextures.com/patterns/cream-paper.png'),
                 linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%);
-            padding: 45px;
+            padding: 40px 45px; /* Уменьшен верхний padding */
             box-sizing: border-box;
             box-shadow: 
                 0 10px 25px rgba(0, 0, 0, 0.15),
@@ -192,11 +192,12 @@
         .signature {
             font-style: italic;
             text-align: right;
-            margin-top: auto; /* Подпись прижимается вниз */
-            padding-top: 40px; /* Увеличен отступ сверху для подписи */
+            margin-top: 30px;
+            padding-top: 30px; /* Отступ перед подписью */
             font-size: 22px;
             color: #8a2525;
             text-shadow: 0 1px 2px rgba(0,0,0,0.1);
+            position: relative;
         }
         
         .date {
@@ -300,7 +301,6 @@
             display: flex;
             flex-direction: column;
             justify-content: space-between;
-            padding-bottom: 30px; /* Добавлен отступ снизу */
         }
         
         .letter-folding {
