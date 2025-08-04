@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Для самой особенной</title>
-    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600&display=swap" rel="stylesheet">
     <style>
         body {
             background: linear-gradient(135deg, #fff5f5 0%, #f0f9ff 100%);
@@ -13,7 +13,7 @@
             align-items: center;
             height: 100vh;
             margin: 0;
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
             overflow: hidden;
             perspective: 1000px;
         }
@@ -22,43 +22,62 @@
             position: relative;
             text-align: center;
             animation: float 6s ease-in-out infinite;
+            z-index: 1;
         }
         
         @keyframes float {
             0%, 100% { transform: translateY(0); }
-            50% { transform: translateY(-20px); }
+            50% { transform: translateY(-15px); }
         }
         
         .envelope {
-            width: 420px;
-            height: 270px;
-            background-color: #fdf6f0;
-            border: 1px solid #e8d5c5;
+            width: 500px;
+            height: 320px;
+            background-color: #f8f1e5;
+            background-image: 
+                linear-gradient(to bottom, rgba(0,0,0,0.03) 0%, transparent 100%),
+                url('https://www.transparenttextures.com/patterns/rice-paper.png');
+            border: 1px solid #d8c9b8;
             position: relative;
-            box-shadow: 0 10px 30px rgba(0, 0, 0, 0.1);
-            border-radius: 2px;
+            box-shadow: 
+                0 10px 30px rgba(0, 0, 0, 0.15),
+                inset 0 0 20px rgba(0,0,0,0.05);
+            border-radius: 3px;
             transition: all 0.8s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             transform-style: preserve-3d;
+            z-index: 2;
         }
         
         .envelope:before {
             content: '';
             position: absolute;
             top: 0;
+            left: 0;
+            right: 0;
             width: 0;
             height: 0;
-            border-left: 210px solid transparent;
-            border-right: 210px solid transparent;
-            border-top: 135px solid #f3e7d8;
-            transform-origin: top;
+            margin: 0 auto;
+            border-left: 250px solid transparent;
+            border-right: 250px solid transparent;
+            border-top: 160px solid #ede0d0;
+            background-image: url('https://www.transparenttextures.com/patterns/rice-paper-2.png');
+            transform-origin: top center;
             transform: rotateX(0deg);
             transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55);
             z-index: 3;
-            filter: drop-shadow(0 2px 3px rgba(0,0,0,0.1));
+            box-shadow: 
+                0 2px 5px rgba(0,0,0,0.1),
+                inset 0 -10px 20px rgba(0,0,0,0.05);
+            filter: drop-shadow(0 3px 5px rgba(0,0,0,0.1));
+        }
+        
+        .envelope.open {
+            z-index: 1;
         }
         
         .envelope.open:before {
             transform: rotateX(180deg);
+            z-index: 1;
         }
         
         .wax-seal {
@@ -66,38 +85,45 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 70px;
-            height: 70px;
-            background: radial-gradient(circle at 30% 30%, #c13c3c, #8a2525);
+            width: 75px;
+            height: 75px;
+            background: 
+                radial-gradient(circle at 30% 30%, #c13c3c, #8a2525),
+                url('https://www.transparenttextures.com/patterns/crissxcross.png');
             border-radius: 50%;
             z-index: 4;
             cursor: pointer;
-            box-shadow: 0 4px 10px rgba(138, 37, 37, 0.3);
+            box-shadow: 
+                0 4px 15px rgba(138, 37, 37, 0.4),
+                inset 0 2px 5px rgba(255,255,255,0.2),
+                inset 0 -2px 5px rgba(0,0,0,0.2);
             transition: all 0.4s ease;
             animation: pulse 2s infinite;
         }
         
         @keyframes pulse {
-            0% { box-shadow: 0 0 0 0 rgba(193, 60, 60, 0.4); }
-            70% { box-shadow: 0 0 0 15px rgba(193, 60, 60, 0); }
-            100% { box-shadow: 0 0 0 0 rgba(193, 60, 60, 0); }
+            0% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(193, 60, 60, 0.4); }
+            70% { transform: translate(-50%, -50%) scale(1.05); box-shadow: 0 0 0 15px rgba(193, 60, 60, 0); }
+            100% { transform: translate(-50%, -50%) scale(1); box-shadow: 0 0 0 0 rgba(193, 60, 60, 0); }
         }
         
         .wax-seal:before {
-            content: '♥ Нажми на печать ♥';
+            content: '✉ Нажми на печать ✉';
             position: absolute;
-            top: -40px;
+            top: -45px;
             left: 50%;
             transform: translateX(-50%);
             background-color: rgba(0, 0, 0, 0.7);
             color: white;
-            padding: 8px 15px;
-            border-radius: 20px;
-            font-size: 14px;
+            padding: 8px 18px;
+            border-radius: 25px;
+            font-size: 15px;
             opacity: 0;
             transition: opacity 0.4s ease;
             white-space: nowrap;
-            font-family: 'Cormorant Garamond', serif;
+            font-family: 'Playfair Display', serif;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.3);
+            box-shadow: 0 3px 10px rgba(0,0,0,0.2);
         }
         
         .wax-seal:hover:before {
@@ -113,46 +139,63 @@
             top: 50%;
             left: 50%;
             transform: translate(-50%, -50%);
-            width: 380px;
-            height: 220px;
-            background-color: #fffaf5;
-            padding: 30px;
+            width: 460px;
+            height: 280px;
+            background-color: #fffcf8;
+            background-image: 
+                url('https://www.transparenttextures.com/patterns/cream-paper.png'),
+                linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0.5) 100%);
+            padding: 35px;
             box-sizing: border-box;
-            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.08);
-            z-index: 2;
+            box-shadow: 
+                0 10px 25px rgba(0, 0, 0, 0.15),
+                inset 0 0 30px rgba(210,190,160,0.2),
+                0 0 0 1px rgba(255,255,255,0.5);
+            z-index: 5;
             opacity: 0;
             transition: all 1s cubic-bezier(0.68, -0.55, 0.27, 1.55) 0.3s;
             overflow: hidden;
-            font-size: 18px;
-            line-height: 1.8;
-            border-radius: 2px;
-            background-image: url('https://www.transparenttextures.com/patterns/cream-paper.png');
+            font-size: 19px;
+            line-height: 1.9;
+            border-radius: 3px;
+            text-shadow: 0 1px 1px rgba(0,0,0,0.05);
+            border: 1px solid rgba(0,0,0,0.05);
+            transform-origin: center;
+            pointer-events: none;
         }
         
         .letter.open {
             opacity: 1;
-            transform: translate(-50%, -180%);
-            animation: letterFloat 4s ease-in-out infinite;
+            transform: translate(-50%, -170%) scale(1);
+            animation: letterFloat 4s ease-in-out infinite, letterAppear 0.8s ease-out forwards;
+            pointer-events: auto;
         }
         
         @keyframes letterFloat {
-            0%, 100% { transform: translate(-50%, -180%); }
-            50% { transform: translate(-50%, -190%); }
+            0%, 100% { transform: translate(-50%, -170%); }
+            50% { transform: translate(-50%, -180%); }
+        }
+        
+        @keyframes letterAppear {
+            0% { transform: translate(-50%, -50%) scale(0.5); opacity: 0; }
+            70% { transform: translate(-50%, -120%) scale(1.05); opacity: 0.8; }
+            100% { transform: translate(-50%, -170%) scale(1); opacity: 1; }
         }
         
         .signature {
             font-style: italic;
             text-align: right;
-            margin-top: 25px;
-            font-size: 20px;
+            margin-top: 30px;
+            font-size: 22px;
             color: #8a2525;
+            text-shadow: 0 1px 2px rgba(0,0,0,0.1);
         }
         
         .date {
             text-align: right;
-            margin-bottom: 15px;
-            color: #888;
-            font-size: 16px;
+            margin-bottom: 20px;
+            color: #777;
+            font-size: 17px;
         }
         
         .hearts {
@@ -167,10 +210,11 @@
         
         .heart {
             position: absolute;
-            font-size: 20px;
+            font-size: 22px;
             color: #ff6b6b;
             animation: falling 5s linear infinite;
             opacity: 0;
+            text-shadow: 0 2px 3px rgba(0,0,0,0.2);
         }
         
         @keyframes falling {
@@ -183,40 +227,170 @@
                 opacity: 0;
             }
         }
+        
+        .ink-effect {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: url('https://www.transparenttextures.com/patterns/soft-paper.png');
+            mix-blend-mode: multiply;
+            opacity: 0.1;
+            pointer-events: none;
+        }
+        
+        .wax-pieces {
+            position: absolute;
+            width: 100%;
+            height: 100%;
+            top: 0;
+            left: 0;
+            pointer-events: none;
+            z-index: 6;
+        }
+        
+        .wax-piece {
+            position: absolute;
+            width: 15px;
+            height: 15px;
+            background: radial-gradient(circle, #c13c3c, #8a2525);
+            border-radius: 50%;
+            opacity: 0;
+            z-index: 6;
+            box-shadow: 0 2px 5px rgba(0,0,0,0.3);
+        }
+        
+        .envelope-shadow {
+            position: absolute;
+            width: 520px;
+            height: 20px;
+            background: radial-gradient(ellipse at center, rgba(0,0,0,0.15) 0%, rgba(0,0,0,0) 70%);
+            bottom: -20px;
+            left: 50%;
+            transform: translateX(-50%);
+            z-index: 0;
+            filter: blur(5px);
+            transition: all 0.5s ease;
+        }
+        
+        .envelope.open + .envelope-shadow {
+            opacity: 0.5;
+            transform: translateX(-50%) scale(0.9);
+        }
+        
+        .letter-content {
+            position: relative;
+            z-index: 2;
+        }
+        
+        .letter-folding {
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+            z-index: 1;
+            clip-path: polygon(0 0, 100% 0, 100% 20%, 0 20%);
+        }
+        
+        .letter-folding:before {
+            content: '';
+            position: absolute;
+            top: 20%;
+            left: 0;
+            width: 100%;
+            height: 1px;
+            background: rgba(0,0,0,0.1);
+            box-shadow: 0 1px 0 rgba(255,255,255,0.5);
+        }
+        
+        .letter-folding:after {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 20%;
+            background: linear-gradient(to bottom, rgba(255,255,255,0.8) 0%, rgba(255,255,255,0) 100%);
+        }
+        
+        .wax-imprint {
+            position: absolute;
+            width: 60px;
+            height: 60px;
+            background: radial-gradient(circle, rgba(193,60,60,0.2) 0%, rgba(138,37,37,0) 70%);
+            border-radius: 50%;
+            top: 10px;
+            right: 10px;
+            z-index: 1;
+        }
     </style>
 </head>
 <body>
     <div class="container">
         <div class="envelope">
-            <div class="wax-seal" onclick="openEnvelope()"></div>
-            <div class="letter">
-                <div class="date">29 августа 2025</div>
-                <p>Любимая моя Ксюня,</p>
-                <p>29.08.2025 - день, который я хочу провести с тобой и который обещает подарить тебе теплые и романтические воспоминания.</p>
-                <p>Жду твоего согласия в личных сообщениях.</p>
-                <div class="signature">С любовью,<br>твой Максик</div>
+            <div class="wax-seal" id="wax-seal"></div>
+            <div class="letter" id="letter">
+                <div class="ink-effect"></div>
+                <div class="letter-folding"></div>
+                <div class="wax-imprint"></div>
+                <div class="letter-content">
+                    <div class="date">29 августа 2025</div>
+                    <p>Любимая моя Ксюня,</p>
+                    <p>29.08.2025 - день, который я хочу провести с тобой и который обещает подарить тебе теплые и романтические воспоминания.</p>
+                    <p>Жду твоего согласия в личных сообщениях.</p>
+                    <div class="signature">С любовью,<br>твой Максик</div>
+                </div>
             </div>
         </div>
+        <div class="envelope-shadow"></div>
         <div class="hearts" id="hearts"></div>
+        <div class="wax-pieces" id="wax-pieces"></div>
     </div>
 
     <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const waxSeal = document.getElementById('wax-seal');
+            const letter = document.getElementById('letter');
+            
+            waxSeal.addEventListener('click', function() {
+                openEnvelope();
+            });
+            
+            // Для мобильных устройств добавляем обработчик touchstart
+            waxSeal.addEventListener('touchstart', function(e) {
+                e.preventDefault();
+                openEnvelope();
+            });
+        });
+
         function openEnvelope() {
             const envelope = document.querySelector('.envelope');
-            const letter = document.querySelector('.letter');
-            const waxSeal = document.querySelector('.wax-seal');
+            const letter = document.getElementById('letter');
+            const waxSeal = document.getElementById('wax-seal');
+            const envelopeShadow = document.querySelector('.envelope-shadow');
             
             envelope.classList.add('open');
             letter.classList.add('open');
-            waxSeal.style.display = 'none';
+            envelopeShadow.style.opacity = '0.5';
+            envelopeShadow.style.transform = 'translateX(-50%) scale(0.9)';
             
-            // Создаем летающие сердечки
+            // Анимация разбивания сургуча
+            createWaxPieces();
+            
+            // Скрыть печать после анимации
+            setTimeout(() => {
+                waxSeal.style.display = 'none';
+            }, 800);
+            
             createHearts();
         }
         
         function createHearts() {
             const heartsContainer = document.getElementById('hearts');
-            const heartCount = 30;
+            const heartCount = 40;
             
             for (let i = 0; i < heartCount; i++) {
                 setTimeout(() => {
@@ -228,11 +402,64 @@
                     heart.style.animationDelay = Math.random() * 5 + 's';
                     heartsContainer.appendChild(heart);
                     
-                    // Удаляем сердечко после анимации
                     setTimeout(() => {
                         heart.remove();
                     }, 10000);
-                }, i * 300);
+                }, i * 200);
+            }
+        }
+        
+        function createWaxPieces() {
+            const waxContainer = document.getElementById('wax-pieces');
+            const pieceCount = 12;
+            
+            // Очистить предыдущие кусочки
+            waxContainer.innerHTML = '';
+            
+            for (let i = 0; i < pieceCount; i++) {
+                const piece = document.createElement('div');
+                piece.classList.add('wax-piece');
+                
+                // Начальная позиция (центр печати)
+                const startX = 50;
+                const startY = 50;
+                
+                // Конечная позиция (случайная)
+                const angle = Math.random() * Math.PI * 2;
+                const distance = 5 + Math.random() * 15;
+                const endX = startX + Math.cos(angle) * distance;
+                const endY = startY + Math.sin(angle) * distance;
+                
+                // Размер и форма
+                const size = 5 + Math.random() * 10;
+                piece.style.width = `${size}px`;
+                piece.style.height = `${size}px`;
+                piece.style.borderRadius = Math.random() > 0.5 ? '50%' : '30%';
+                
+                // Позиционирование
+                piece.style.left = `${startX}%`;
+                piece.style.top = `${startY}%`;
+                
+                // Анимация
+                piece.style.transition = `all 0.8s cubic-bezier(0.3, 0.7, 0.4, 1.3) ${i * 0.05}s`;
+                
+                waxContainer.appendChild(piece);
+                
+                // Запуск анимации
+                setTimeout(() => {
+                    piece.style.opacity = '1';
+                    piece.style.left = `${endX}%`;
+                    piece.style.top = `${endY}%`;
+                    piece.style.transform = `rotate(${Math.random() * 360}deg) scale(0.7)`;
+                }, 10);
+                
+                // Удаление через некоторое время
+                setTimeout(() => {
+                    piece.style.opacity = '0';
+                    setTimeout(() => {
+                        piece.remove();
+                    }, 1000);
+                }, 2000 + i * 100);
             }
         }
     </script>
